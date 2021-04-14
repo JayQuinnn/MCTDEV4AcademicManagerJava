@@ -9,9 +9,9 @@ public class ExchangeStudent extends Student {
     private Dorm dorm;
     private MotivationalLetter motivationalLetter;
 
-    public ExchangeStudent(String firstName, String lastName, Course course, int studentID, Sex sex, String picture, String email, Disabilities disabilities, String phoneNumber, Year year, Grades grades, Group group, Nationality nationality, Alma alma, Date durationOfStay, Dorm dorm, MotivationalLetter motivationalLetter){
+    public ExchangeStudent(String firstName, String lastName, Course course, Sex sex, String picture, String email, Disabilities disabilities, String phoneNumber, Year year, Group group, Nationality nationality, Alma alma, Date durationOfStay, Dorm dorm, MotivationalLetter motivationalLetter){
 
-        super(firstName, lastName, course, studentID, sex, picture, email, disabilities, phoneNumber, year, grades, group);
+        super(firstName, lastName, course, sex, picture, email, disabilities, phoneNumber, year, group);
 
         this.nationality = nationality;
         this.alma = alma;

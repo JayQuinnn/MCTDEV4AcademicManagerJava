@@ -16,29 +16,43 @@ public class Student {
     private Year year;
     private Grades grades;
     private Group group;
+    private String address;
 
 
-    public Student(String firstName, String lastName, Course course, int studentID, Sex sex, String picture, String email, Disabilities disabilities, String phoneNumber, Year year, Grades grades, Group group){
+    public Student(String firstName, String lastName, Course course, Sex sex, String picture, String email, Disabilities disabilities, String phoneNumber, Year year, Group group, String address) {
 
-       this.firstName = firstName;
-       this.lastName = lastName;
-       this.course = course;
-       this.studentID = studentID;
-       this.sex = sex;
-       this.picture = picture;
-       this.email = email;
-       this.disabilities = disabilities;
-       this.phoneNumber = phoneNumber;
-       this.year = year;
-       this.grades = grades;
-       this.group = group;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.course = course;
+        this.sex = sex;
+        this.picture = picture;
+        this.email = email;
+        this.disabilities = disabilities;
+        this.phoneNumber = phoneNumber;
+        this.year = year;
+        this.group = group;
+        this.address = address;
 
     }
 
-    public Student(String firstName, String lastName){
+    public Student(String firstName, String lastName, Course course, Sex sex, String picture, String email, Disabilities disabilities, String phoneNumber, Year year, Group group) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.course = course;
+        this.sex = sex;
+        this.picture = picture;
+        this.email = email;
+        this.disabilities = disabilities;
+        this.phoneNumber = phoneNumber;
+        this.year = year;
+        this.group = group;
+    }
+
+    public Student(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
 
     // Getters & Setters
 
@@ -137,4 +151,18 @@ public class Student {
     public void setGroup(Group group) {
         this.group = group;
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return this.getFirstName();
+    }
+
 }
