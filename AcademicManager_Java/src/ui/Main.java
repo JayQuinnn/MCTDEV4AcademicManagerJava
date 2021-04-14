@@ -3,6 +3,7 @@ import java.awt.*;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
+import dao.LecturerDAO;
 import dao.StudentDAO;
 import data.*;
 import domain.Database;
@@ -17,13 +18,31 @@ public class Main {
 
 
         Student wouter = new Student("Wouter", "Boozeleer", Course.MCT, Sex.MALE, "Wouterpicture", "Wouter@ehb.be", Disabilities.DYSLEXIA, "124345646", Year.THREE, Group.A, "Address");
+        Lecturer jochem = new Lecturer("Jochem", "Flap", "Jochem@vub.be", "546465465", Paygrade.A);
 
         StudentDAO studentDAO = new StudentDAO();
+        LecturerDAO lecturerDAO = new LecturerDAO();
+
+
+        Teaching teaching = new Teaching();
+        OnLeave onleave = new OnLeave();
+
+        //onleave.changeEmployment(jochem);
+
         //studentDAO.save(wouter);
         //studentDAO.searchOn("fldName", "Wouter");
         //studentDAO.save(wouter);
-        studentDAO.update(1, wouter);
+        //studentDAO.update(1, wouter);
+        //studentDAO.getByID(2);
+        //System.out.println(studentDAO.getByID(2));
 
+        //lecturerDAO.save(jochem);
+        //lecturerDAO.searchOn("fldName", "Jochem");
+        //lecturerDAO.delete(1);
+        //lecturerDAO.getAll();
+        //lecturerDAO.getByID(3);
+        //System.out.println(lecturerDAO.getByID(3));
+        //lecturerDAO.update(3, jochem);
 
     }
 }

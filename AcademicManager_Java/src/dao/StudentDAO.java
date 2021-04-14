@@ -45,9 +45,21 @@ public class StudentDAO {
 
                 for (int i = 1; i < columnCount; i++){
                     values[i - 1] = rs.getString(i);
-                    System.out.println(rs.getString(i));
                 }
-                System.out.println("Result is " + values[1] + " " + values[2]);
+                System.out.println("_______________________________" + "\n" +
+                        "---" + values[1] + " " + values[2] + "---" + "\n" +
+                        "Name: " +  values[1] + "\n" +
+                        "Last Name: "+ values[2] + "\n" +
+                        "Course: "+ values[3] + "\n" +
+                        "Gender: "+ values[4] + "\n" +
+                        "Picture: "+ values[5] + "\n" +
+                        "Email: "+ values[6] + "\n" +
+                        "Disabilities: "+ values[7] + "\n" +
+                        "Phonenumber: "+ values[8] + "\n" +
+                        "Year: "+ values[9] + "\n" +
+                        "Group: "+ values[10] + "\n" +
+                        "Address: "+ values[11] + "\n" +
+                        "_______________________________");
             }
             statement.close();
             conn.close();
@@ -55,6 +67,28 @@ public class StudentDAO {
         catch (Exception e){
             System.out.println(e.toString());
         }
+    }
+
+    public String getByID(int ID){
+
+        String result = "NOT FOUND";
+
+        try {
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("SELECT fldstudentid, fldName,  fldLastName FROM tblstudent WHERE fldstudentid = ?");
+            statement.setInt(1, ID);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                result = rs.getString(1);
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+        return result;
     }
 
     public void save (Student student){

@@ -11,13 +11,12 @@ public class Lecturer {
     private EmploymentStatus employmentStatus;
 
 
-    public Lecturer(String name, String lastName, String email, String phoneNumber, Paygrade paygrade ){
+    public Lecturer(String name, String lastName, String email, String phoneNumber, Paygrade paygrade){
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.paygrade = paygrade;
-
         employmentStatus = null;
     }
 
@@ -66,6 +65,7 @@ public class Lecturer {
     }
 
     public EmploymentStatus getEmploymentStatus(){
+
         return employmentStatus;
     }
 
