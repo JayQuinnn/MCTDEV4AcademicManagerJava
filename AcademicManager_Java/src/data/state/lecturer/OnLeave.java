@@ -1,6 +1,9 @@
-package data;
+package data.state.lecturer;
 
-public class OnLeave implements EmploymentStatus{
+import data.Lecturer;
+import data.state.lecturer.EmploymentStatus;
+
+public class OnLeave implements EmploymentStatus {
 
     public void changeEmployment(Lecturer lecturer){
         lecturer.setEmploymentStatus(this);

@@ -1,5 +1,7 @@
 package data;
 
+import data.constants.*;
+
 import java.util.Date;
 
 public class ExchangeStudent extends Student {

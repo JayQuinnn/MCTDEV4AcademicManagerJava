@@ -1,5 +1,8 @@
 package data;
 
+import data.constants.Paygrade;
+import data.state.lecturer.EmploymentStatus;
+
 public class Lecturer {
 
     private String name;

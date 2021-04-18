@@ -1,12 +1,9 @@
 package dao;
 
 import data.Lecturer;
-import data.OnLeave;
-import data.Student;
-import data.Teaching;
+import data.state.lecturer.Teaching;
 import domain.Database;
 
-import java.lang.ref.Cleaner;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,13 +1,17 @@
 package data;
 
+import data.constants.*;
+
+import java.util.Objects;
+
 public class Student {
 
     // Constructor
 
+    private int studentID;
     private String firstName;
     private String lastName;
     private Course course;
-    private int studentID;
     private Sex sex;
     private String picture;
     private String email;
@@ -18,7 +22,7 @@ public class Student {
     private Group group;
     private String address;
 
-
+    // With address (regular student)
     public Student(String firstName, String lastName, Course course, Sex sex, String picture, String email, Disabilities disabilities, String phoneNumber, Year year, Group group, String address) {
 
         this.firstName = firstName;
@@ -35,6 +39,7 @@ public class Student {
 
     }
 
+    // No address (exchange student)
     public Student(String firstName, String lastName, Course course, Sex sex, String picture, String email, Disabilities disabilities, String phoneNumber, Year year, Group group) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -161,8 +166,35 @@ public class Student {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return studentID == student.studentID && firstName.equals(student.firstName) && lastName.equals(student.lastName) && course == student.course && sex == student.sex && picture.equals(student.picture) && email.equals(student.email) && disabilities == student.disabilities && phoneNumber.equals(student.phoneNumber) && year == student.year && grades.equals(student.grades) && group == student.group && address.equals(student.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, course, studentID, sex, picture, email, disabilities, phoneNumber, year, grades, group, address);
+    }
+
+    @Override
     public String toString() {
-        return this.getFirstName();
+        return "Student{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", course=" + course +
+                ", studentID=" + studentID +
+                ", sex=" + sex +
+                ", picture='" + picture + '\'' +
+                ", email='" + email + '\'' +
+                ", disabilities=" + disabilities +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", year=" + year +
+                ", grades=" + grades +
+                ", group=" + group +
+                ", address='" + address + '\'' +
+                '}';
     }
 
 }

@@ -1,5 +1,7 @@
 package data;
 
+import data.constants.Subject;
+
 public class Grades {
     private int score;
     private Subject subject;

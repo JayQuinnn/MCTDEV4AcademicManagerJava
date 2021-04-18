@@ -1,5 +1,7 @@
 package data;
 
+import data.constants.Building;
+
 public class Dorm {
 
     private Building building;

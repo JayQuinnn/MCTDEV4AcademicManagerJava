@@ -1,4 +1,4 @@
-package data;
+package data.constants;
 
 public enum Paygrade {
     A,

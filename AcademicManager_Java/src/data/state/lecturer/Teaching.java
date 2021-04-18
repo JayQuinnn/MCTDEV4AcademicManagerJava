@@ -1,6 +1,9 @@
-package data;
+package data.state.lecturer;
 
-public class Teaching implements EmploymentStatus{
+import data.Lecturer;
+import data.state.lecturer.EmploymentStatus;
+
+public class Teaching implements EmploymentStatus {
 
     public void changeEmployment(Lecturer lecturer){
         lecturer.setEmploymentStatus(this);

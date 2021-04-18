@@ -1,36 +1,47 @@
 package dao;
-import data.Student;
-import data.Year;
-import data.Group;
+
+import data.*;
+import data.constants.*;
 import domain.Database;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class StudentDAO {
 
 
 
-    public void getAll(){
-        try{
+
+    public ArrayList<Student> getAll() {
+
+        ArrayList<Student> studentResults = new ArrayList<Student>();
+        Student result;
+
+        try {
             Connection conn = Database.connect();
+
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM tblstudent");
             ResultSet rs = statement.executeQuery();
 
-            while (rs.next()){
+            while (rs.next()) {
+
+
                 String student = rs.getString("fldName");
                 System.out.println(student);
-            }
 
+            }
             statement.close();
             conn.close();
-        }
-        catch (Exception e){
+
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
+        return studentResults;
     }
 
-    public void searchOn(String parameter, String value){
-        try{
+
+    public void searchOn(String parameter, String value) {
+        try {
             Connection conn = Database.connect();
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM tblstudent WHERE " + parameter + " = ?");
             statement.setString(1, value);
@@ -40,58 +51,67 @@ public class StudentDAO {
             final int columnCount = resultSetMetaData.getColumnCount();
 
 
-            while (rs.next()){
+            while (rs.next()) {
                 Object[] values = new Object[columnCount];
 
-                for (int i = 1; i < columnCount; i++){
+                for (int i = 1; i < columnCount; i++) {
                     values[i - 1] = rs.getString(i);
                 }
                 System.out.println("_______________________________" + "\n" +
                         "---" + values[1] + " " + values[2] + "---" + "\n" +
-                        "Name: " +  values[1] + "\n" +
-                        "Last Name: "+ values[2] + "\n" +
-                        "Course: "+ values[3] + "\n" +
-                        "Gender: "+ values[4] + "\n" +
-                        "Picture: "+ values[5] + "\n" +
-                        "Email: "+ values[6] + "\n" +
-                        "Disabilities: "+ values[7] + "\n" +
-                        "Phonenumber: "+ values[8] + "\n" +
-                        "Year: "+ values[9] + "\n" +
-                        "Group: "+ values[10] + "\n" +
-                        "Address: "+ values[11] + "\n" +
+                        "Name: " + values[1] + "\n" +
+                        "Last Name: " + values[2] + "\n" +
+                        "Course: " + values[3] + "\n" +
+                        "Gender: " + values[4] + "\n" +
+                        "Picture: " + values[5] + "\n" +
+                        "Email: " + values[6] + "\n" +
+                        "Disabilities: " + values[7] + "\n" +
+                        "Phonenumber: " + values[8] + "\n" +
+                        "Year: " + values[9] + "\n" +
+                        "Group: " + values[10] + "\n" +
+                        "Address: " + values[11] + "\n" +
                         "_______________________________");
             }
             statement.close();
             conn.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
 
-    public String getByID(int ID){
+    public Student getByID(int ID) {
 
-        String result = "NOT FOUND";
+        Student result = null;
 
         try {
             Connection conn = Database.connect();
 
-            PreparedStatement statement = conn.prepareStatement("SELECT fldstudentid, fldName,  fldLastName FROM tblstudent WHERE fldstudentid = ?");
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM tblstudent WHERE fldstudentid = ?");
             statement.setInt(1, ID);
             System.out.println(statement);
             ResultSet rs = statement.executeQuery();
-            if(rs.next()){
-                result = rs.getString(1);
+            if (rs.next()) {
+                result = new Student(
+                        rs.getString(2),
+                        rs.getString(3),
+                        Course.valueOf(rs.getString(4)),
+                        Sex.valueOf(rs.getString(5)),
+                        rs.getString(6),
+                        rs.getString(7),
+                        Disabilities.valueOf(rs.getString(8)),
+                        rs.getString(9),
+                        Year.valueOf(rs.getString(10)),
+                        Group.valueOf(rs.getString(11)));
+
+                System.out.println(result);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
-
         return result;
     }
 
-    public void save (Student student){
+    public void save(Student student) {
 
         try {
             Connection conn = Database.connect();
@@ -119,7 +139,7 @@ public class StudentDAO {
         }
     }
 
-    public void delete (int studentID){
+    public void delete(int studentID) {
 
         try {
             Connection conn = Database.connect();
@@ -132,12 +152,12 @@ public class StudentDAO {
             statement.close();
             conn.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
 
-    public void update(int studentID, Student student){
+    public void update(int studentID, Student student) {
         try {
             Connection conn = Database.connect();
 
@@ -154,15 +174,19 @@ public class StudentDAO {
             statement.setString(10, student.getGroup().toString());
             statement.setString(11, student.getAddress());
 
-            System.out.println("Updating");
-            System.out.println(statement);
-
             statement.executeUpdate();
             statement.close();
             conn.close();
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
+
+
+
 }
+
+
+
+

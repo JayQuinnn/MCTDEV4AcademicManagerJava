@@ -1,15 +1,11 @@
 package ui;
-import java.awt.*;
-import java.sql.Statement;
-import java.sql.ResultSet;
 
 import dao.LecturerDAO;
 import dao.StudentDAO;
 import data.*;
-import domain.Database;
-
-import java.sql.Connection;
-import java.util.ArrayList;
+import data.constants.*;
+import data.state.lecturer.OnLeave;
+import data.state.lecturer.Teaching;
 
 public class Main {
 
@@ -34,7 +30,7 @@ public class Main {
         //studentDAO.save(wouter);
         //studentDAO.update(1, wouter);
         //studentDAO.getByID(2);
-        //System.out.println(studentDAO.getByID(2));
+        System.out.println("result is" + studentDAO.getByID(2));
 
         //lecturerDAO.save(jochem);
         //lecturerDAO.searchOn("fldName", "Jochem");

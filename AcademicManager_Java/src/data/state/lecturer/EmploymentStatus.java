@@ -1,4 +1,6 @@
-package data;
+package data.state.lecturer;
+
+import data.Lecturer;
 
 public interface EmploymentStatus {
 
