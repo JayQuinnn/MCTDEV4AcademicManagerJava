@@ -4,8 +4,8 @@ import dao.LecturerDAO;
 import dao.StudentDAO;
 import data.*;
 import data.constants.*;
-import data.state.lecturer.OnLeave;
-import data.state.lecturer.Teaching;
+import data.state.OnLeaveState;
+import data.state.TeachingState;
 
 public class Main {
 
@@ -20,8 +20,8 @@ public class Main {
         LecturerDAO lecturerDAO = new LecturerDAO();
 
 
-        Teaching teaching = new Teaching();
-        OnLeave onleave = new OnLeave();
+        TeachingState teachingState = new TeachingState();
+        OnLeaveState onleave = new OnLeaveState();
 
         //onleave.changeEmployment(jochem);
 
@@ -39,6 +39,7 @@ public class Main {
         //lecturerDAO.getByID(3);
         //System.out.println(lecturerDAO.getByID(3));
         //lecturerDAO.update(3, jochem);
+
 
     }
 }

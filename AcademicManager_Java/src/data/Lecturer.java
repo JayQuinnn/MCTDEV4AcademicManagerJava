@@ -1,7 +1,9 @@
 package data;
 
 import data.constants.Paygrade;
-import data.state.lecturer.EmploymentStatus;
+import data.state.EmploymentStatus;
+import data.state.OnLeaveState;
+import data.state.TeachingState;
 
 public class Lecturer {
 
@@ -13,6 +15,8 @@ public class Lecturer {
 
     private EmploymentStatus employmentStatus;
 
+    TeachingState teachingState = new TeachingState();
+    OnLeaveState onLeaveState = new OnLeaveState();
 
     public Lecturer(String name, String lastName, String email, String phoneNumber, Paygrade paygrade){
         this.name = name;
@@ -20,7 +24,8 @@ public class Lecturer {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.paygrade = paygrade;
-        employmentStatus = null;
+
+        teachingState.changeEmployment(this);
     }
 
     public String getName() {
@@ -70,6 +75,13 @@ public class Lecturer {
     public EmploymentStatus getEmploymentStatus(){
 
         return employmentStatus;
+    }
+
+    public void toggleEmployment(){
+        if(this.employmentStatus.getClass().getName() == "OnLeaveState"){
+            teachingState.changeEmployment(this);
+        }
+        else onLeaveState.changeEmployment(this);
     }
 
 }

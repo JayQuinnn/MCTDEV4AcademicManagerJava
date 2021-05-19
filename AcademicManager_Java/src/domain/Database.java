@@ -8,9 +8,18 @@ import java.sql.SQLException;
 
 public class Database {
 
-
+    // SINGLETON
+    private static Connection instantie = null;
 
     public static Connection connect() {
+
+        if (instantie != null){
+            try{
+                return instantie; //https://www.baeldung.com/java-singleton
+            } catch (Exception e){
+                System.out.println(e.toString());
+            }
+        }
 
         try {
             MysqlDataSource dataSource = new MysqlDataSource();
@@ -19,9 +28,9 @@ public class Database {
             dataSource.setServerName("94.224.211.168");
             dataSource.setPort(25568);
             dataSource.setDatabaseName("academic04");
-
-            return dataSource.getConnection();
-
+            Connection connection = dataSource.getConnection();
+            instantie = connection;
+            return connection;
         } catch (Exception e) {
             System.out.println(e.toString());
         }

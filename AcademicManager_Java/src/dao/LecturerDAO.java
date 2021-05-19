@@ -1,17 +1,21 @@
 package dao;
 
 import data.Lecturer;
-import data.state.lecturer.Teaching;
+import data.state.TeachingState;
 import domain.Database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
 
 public class LecturerDAO {
 
-    public void getAll(){
+    public ArrayList<Lecturer> getAll(){
+
+        ArrayList<Lecturer> lecturerResults = new ArrayList<>();
+
         try{
             Connection conn = Database.connect();
             PreparedStatement statement = conn.prepareStatement("SELECT * FROM tbllecturer");
@@ -28,6 +32,8 @@ public class LecturerDAO {
         catch (Exception e){
             System.out.println(e.toString());
         }
+
+        return lecturerResults;
     }
 
     public void searchOn(String parameter, String value){
@@ -147,8 +153,8 @@ public class LecturerDAO {
             statement.setString(4, lecturer.getPhoneNumber().toString());
             statement.setString(5, lecturer.getPaygrade().toString());
 
-            Teaching teaching = new Teaching();
-            teaching.changeEmployment(lecturer);
+            TeachingState teachingState = new TeachingState();
+            teachingState.changeEmployment(lecturer);
 
             statement.setString(6, lecturer.getEmploymentStatus().toString());
 

@@ -141,14 +141,6 @@ public class Student {
         this.year = year;
     }
 
-    public Grades getGrade() {
-        return grades;
-    }
-
-    public void setGrade(Grades grade) {
-        this.grades = grade;
-    }
-
     public Group getGroup() {
         return group;
     }
@@ -170,7 +162,7 @@ public class Student {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return studentID == student.studentID && firstName.equals(student.firstName) && lastName.equals(student.lastName) && course == student.course && sex == student.sex && picture.equals(student.picture) && email.equals(student.email) && disabilities == student.disabilities && phoneNumber.equals(student.phoneNumber) && year == student.year && grades.equals(student.grades) && group == student.group && address.equals(student.address);
+        return studentID == student.studentID && firstName.equals(student.firstName) && lastName.equals(student.lastName) && course == student.course && sex == student.sex && picture.equals(student.picture) && email.equals(student.email) && disabilities == student.disabilities && phoneNumber.equals(student.phoneNumber) && year == student.year && group == student.group && address.equals(student.address);
     }
 
     @Override

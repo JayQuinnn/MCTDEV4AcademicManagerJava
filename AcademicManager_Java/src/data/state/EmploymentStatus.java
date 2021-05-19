@@ -1,4 +1,4 @@
-package data.state.lecturer;
+package data.state;
 
 import data.Lecturer;
 
