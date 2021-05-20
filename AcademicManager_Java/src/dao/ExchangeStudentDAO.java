@@ -1,9 +1,11 @@
 package dao;
 
 import data.ExchangeStudent;
+import data.Lecturer;
 import domain.Database;
 import org.w3c.dom.CDATASection;
 
+import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,9 +16,30 @@ public class ExchangeStudentDAO {
 
     //Get All Exchangestudents
 
+    public ArrayList<ExchangeStudent> getAll(){
+
+        ArrayList<ExchangeStudent> exchangeStudentResults = new ArrayList<>();
+
+        try{
+            Connection conn = Database.connect();
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM tblstudentexchange");
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()){
+                String exchangeStudent = rs.getString("fldName");
+                System.out.println(exchangeStudent);
+            }
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+
+        return exchangeStudentResults;
+    }
+
     //Search with parameter
 
-    //GetByID
+
+
 
     public String getBYID(int ID){
 
