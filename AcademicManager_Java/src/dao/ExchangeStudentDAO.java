@@ -38,6 +38,42 @@ public class ExchangeStudentDAO {
 
     //Search with parameter
 
+    public void searchOn(String parameter, String value){
+
+        try{
+            Connection conn = Database.connect();
+            PreparedStatement statement = conn.prepareStatement("SELECT * FROM tblstudentexchange WHERE" + parameter + " = ?");
+            statement.setString(1, value);
+            ResultSet rs = statement.executeQuery();
+
+            ResultSetMetaData resultSetMetaData = rs.getMetaData();
+            final int columnCount = resultSetMetaData.getColumnCount();
+
+            while (rs.next()){
+                Object[] values = new Object[columnCount];
+
+                for (int i = 1; i < columnCount; i++){
+                    values[i - 1] = rs.getString(i);
+                }
+                System.out.println(
+                        "_______________________________" + "\n" +
+                                "---" + values[1] + " " + values[2] + "---" + "\n" +
+                                "Name: " +  values[1] + "\n" +
+                                "Last Name: "+ values[2] + "\n" +
+                                "Email: "+ values[3] + "\n" +
+                                "Phonenumber: "+ values[4] + "\n" +
+                                "Paygrade: "+ values[5] + "\n" +
+                                "EmploymentStatus: "+ values[6] + "\n" +
+                                "_______________________________");
+            }
+            statement.close();
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
+
+    }
+
 
 
 
