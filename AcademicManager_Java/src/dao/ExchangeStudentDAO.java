@@ -2,6 +2,7 @@ package dao;
 
 import data.ExchangeStudent;
 import domain.Database;
+import org.w3c.dom.CDATASection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,6 +67,7 @@ public class ExchangeStudentDAO {
 
 
     }
+    
     public void delete(int exchangeStudentID){
         try{
             Connection conn = Database.connect();
@@ -85,7 +87,40 @@ public class ExchangeStudentDAO {
         }
     }
 
+    public void update(int exchangeStudentID, ExchangeStudent exchangeStudent){
+
+        try {
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("UPDATE tblstudentexchange " +
+                    "SET fldName=?" +
+                    "fldLastName=?" +
+                    "fldCourse=?" +
+                    "fldGender=?" +
+                    "fldPicture=?" +
+                    "fldEmail=?" +
+                    "fldDisabilities =?" +
+                    "fldPhoneNumber=?" +
+                    "fldYear=?" +
+                    "fldGroup=?" +
+                    "fldNationality=?" +
+                    "fldAlmaID=?" +
+                    "fldDormID=?" +
+                    "fldMotivationalLetter=?" +
+                    "fldStay=?" +
+                    "WHERE fldStudentExchangeID=" + exchangeStudentID);
+
+            System.out.println(statement);
+
+            statement.executeUpdate();
+            statement.close();
 
 
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
 
-}
+        }
+    }
+
+
