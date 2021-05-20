@@ -163,10 +163,9 @@ public class LecturerDAO {
 
             statement.executeUpdate();
             statement.close();
-            conn.close();
+            //conn.close();
 
         } catch (Exception e){
-            System.out.println(e.toString());
             System.out.println(e.toString());
         }
     }
