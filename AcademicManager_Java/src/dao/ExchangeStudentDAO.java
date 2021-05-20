@@ -18,6 +18,28 @@ public class ExchangeStudentDAO {
 
     //GetByID
 
+    public String getBYID(int ID){
+
+        String result = "NOT FOUND";
+
+        try{
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("SELECT fldStudentExchangeID, fldName, fldLastName FROM tblstudentexchange WHERE fldStudentExchangeID = ? ");
+            statement.setInt(1, ID);
+            System.out.println(statement);
+            ResultSet rs = statement.executeQuery();
+            if(rs.next()){
+                result = rs.getString(1);
+            }
+
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
+
+        return result;
+    }
+
     public void save(ExchangeStudent exchangeStudent){
 
         try {
@@ -67,7 +89,7 @@ public class ExchangeStudentDAO {
 
 
     }
-    
+
     public void delete(int exchangeStudentID){
         try{
             Connection conn = Database.connect();
