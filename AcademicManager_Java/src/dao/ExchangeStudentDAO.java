@@ -17,8 +17,6 @@ public class ExchangeStudentDAO {
 
     //GetByID
 
-    //Save
-
     public void save(ExchangeStudent exchangeStudent){
 
         try {
@@ -66,11 +64,28 @@ public class ExchangeStudentDAO {
             System.out.println(e.toString());
         }
 
-        //Delete
-
-        //Update
 
     }
+    public void delete(int exchangeStudentID){
+        try{
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM tblstudentexchange WHERE fldStudentExchangeID = ?");
+            statement.setInt(1, exchangeStudentID);
+
+            System.out.println(statement);
+
+            statement.executeUpdate();
+            statement.close();
+
+        }
+
+        catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+
 
 
 }
