@@ -146,7 +146,14 @@ public class LecturerDAO {
         try {
             Connection conn = Database.connect();
 
-            PreparedStatement statement = conn.prepareStatement("UPDATE tbllecturer SET fldName=?, fldLastName=?, fldEmail=?, fldPhoneNumber=?, fldPaygrade=?, fldEmploymentStatus=? WHERE fldlecturerID=" + lecturerID);
+            PreparedStatement statement = conn.prepareStatement("UPDATE tbllecturer " +
+                    "SET fldName=?, " +
+                    "fldLastName=?, " +
+                    "fldEmail=?, " +
+                    "fldPhoneNumber=?, " +
+                    "fldPaygrade=?, " +
+                    "fldEmploymentStatus=? " +
+                    "WHERE fldlecturerID=" + lecturerID);
             statement.setString(1, lecturer.getName());
             statement.setString(2, lecturer.getLastName());
             statement.setString(3, lecturer.getEmail());
