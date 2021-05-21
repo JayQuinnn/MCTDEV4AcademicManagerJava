@@ -128,4 +128,21 @@ public class AlmaDAO {
 
     }
 
+    public void delete(int almaID){
+        try {
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM tblalma WHERE fldAlmaID = ?");
+            statement.setInt(1, almaID);
+
+            System.out.println(statement.toString());
+            statement.executeUpdate();
+            statement.close();
+
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
+
 }
