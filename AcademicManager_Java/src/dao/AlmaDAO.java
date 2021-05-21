@@ -3,6 +3,7 @@ package dao;
 import data.Alma;
 import domain.Database;
 
+import javax.swing.plaf.nimbus.State;
 import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.ArrayList;
@@ -95,5 +96,36 @@ public class AlmaDAO {
     }
 
 
+    public void save(Alma alma){
+
+        try {
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO tblalma (fldName" +
+                    "fldAddress" +
+                    "fldNotes" +
+                    "fldEmail" +
+                    "fldPhoneNumber" +
+                    "fldKey) " +
+                    "values (?, ?, ?, ?, ? , ?)");
+
+            System.out.println(statement);
+
+            statement.setString(1, alma.getName());
+            statement.setString(2, alma.getAddress());
+            statement.setString(3, alma.getDescription());
+            statement.setString(4, alma.getEmail());
+            statement.setString(5, alma.getPhoneNumber());
+            statement.setString(6, alma.getName() + alma.getPhoneNumber());
+
+            System.out.println(statement);
+            statement.executeUpdate();
+            statement.close();
+
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
+
+    }
 
 }

@@ -103,7 +103,14 @@ public class LecturerDAO {
         try {
             Connection conn = Database.connect();
 
-            PreparedStatement statement = conn.prepareStatement("INSERT INTO tbllecturer (fldName, fldLastName, fldEmail, fldPhoneNumber, fldPaygrade, fldEmploymentStatus, fldKey) values (?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO tbllecturer (fldName, " +
+                    "fldLastName, " +
+                    "fldEmail, " +
+                    "fldPhoneNumber, " +
+                    "fldPaygrade, " +
+                    "fldEmploymentStatus, " +
+                    "fldKey) " +
+                    "values (?, ?, ?, ?, ?, ?, ?)");
             System.out.println(statement);
 
             statement.setString(1, lecturer.getName());
