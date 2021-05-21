@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import data.*;
 import domain.Database;
 
+import javax.xml.crypto.Data;
+
 public class DormDAO {
 
     public ArrayList<Dorm> getAll(){
@@ -29,6 +31,28 @@ public class DormDAO {
         }
 
         return dormResults;
+    }
+
+    public void update(int dormID, Dorm dorm){
+        try{
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("UPDATE tbldorm " +
+                    "SET fldBuilding =?, " +
+                    "fldFloor= ?, " +
+                    "fldRoom=?, " +
+                    "WHERE fldDormID = " + dormID);
+            statement.setString(1, dorm.getBuilding().toString());
+            statement.setInt(2, dorm.getFloor());
+            statement.setInt(3, dorm.getRoom());
+
+            statement.executeUpdate();
+            statement.close();
+
+
+        }catch (Exception e){
+            System.out.println(e.toString());
+        }
     }
 
 }
