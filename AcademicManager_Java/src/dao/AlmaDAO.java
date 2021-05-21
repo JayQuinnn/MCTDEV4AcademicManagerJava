@@ -144,5 +144,34 @@ public class AlmaDAO {
         }
     }
 
+    public void update(int almaID, Alma alma){
+
+        try {
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("UPDATE tblalma" +
+                    "SET fldName=?, " +
+                    "fldAddress=?, " +
+                    "fldNotes=?, " +
+                    "fldEmail=?, " +
+                    "fldPhoneNumber=?, " +
+                    "fldKey=? " +
+                    "WHERE fldAlmaID = " + almaID);
+            statement.setString(1, alma.getName());
+            statement.setString(2, alma.getAddress());
+            statement.setString(3, alma.getDescription());
+            statement.setString(4, alma.getEmail());
+            statement.setString(5, alma.getPhoneNumber());
+            statement.setString(6, alma.getName() + alma.getPhoneNumber());
+
+            System.out.println(statement);
+            statement.executeUpdate();
+            statement.close();
+
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
+
+    }
 
 }
