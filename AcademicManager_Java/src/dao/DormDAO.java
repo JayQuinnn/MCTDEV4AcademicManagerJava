@@ -73,4 +73,31 @@ public class DormDAO {
         }
     }
 
+    public void save (Dorm dorm){
+
+        try {
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("INSERT INTO tbldorm (fldBuilding, " +
+                    "fldFloor, " +
+                    "fldRoom, " +
+                    "values (?, ?, ?)");
+            System.out.println(statement);
+
+            statement.setString(1, dorm.getBuilding().toString());
+            statement.setInt(2, dorm.getFloor());
+            statement.setInt(3, dorm.getRoom());
+
+
+            System.out.println(statement.toString());
+            statement.executeUpdate();
+            statement.close();
+            conn.close();
+
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+    }
+
+
 }
