@@ -60,9 +60,6 @@ public class LecturerDAO {
                         "Name: " +  values[1] + "\n" +
                         "Last Name: "+ values[2] + "\n" +
                         "Email: "+ values[3] + "\n" +
-                        "Phonenumber: "+ values[4] + "\n" +
-                        "Paygrade: "+ values[5] + "\n" +
-                        "EmploymentStatus: "+ values[6] + "\n" +
                         "_______________________________");
             }
             statement.close();
