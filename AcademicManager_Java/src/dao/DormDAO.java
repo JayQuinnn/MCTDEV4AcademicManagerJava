@@ -55,4 +55,22 @@ public class DormDAO {
         }
     }
 
+    public void delete (int dormID){
+
+        try {
+            Connection conn = Database.connect();
+
+            PreparedStatement statement = conn.prepareStatement("DELETE FROM tbldorm WHERE fldDormID = ?");
+            statement.setInt(1, dormID);
+
+            System.out.println(statement.toString());
+            statement.executeUpdate();
+            statement.close();
+            conn.close();
+
+        } catch (Exception e){
+            System.out.println(e.toString());
+        }
+    }
+
 }
